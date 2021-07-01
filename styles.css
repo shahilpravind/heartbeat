@@ -1,6 +1,10 @@
 @font-face {
     font-family: dancingScript;
-    src: url(Dancing_Script/static/DancingScript-Regular.ttf);
+    src: url(dancing_script/static/DancingScript-Regular.ttf);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -14,22 +18,51 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.human-heart {
+    margin: 10em;
+    -webkit-animation: 1.2s infinite beatHeart;
+    animation: 1.2s infinite beatHeart;
+    filter: sepia(30%);
 }
 
 h1 {
     color: white;
     text-align: center;
     font-family: dancingScript;
-    font-size: 4em;
+    font-size: 3em;
     -webkit-animation: 1.2s infinite beatHeart;
     animation: 1.2s infinite beatHeart;
+    
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
 }
 
-.human-heart {
+#wink-emoji {
+    opacity: 0;
+    animation: fade-in 0.15s;
+    animation-delay: 9s;
+    animation-fill-mode: forwards;
+}
+
+#pulse {
     margin: 5em;
-    -webkit-animation: 1.2s infinite beatHeart;
-    animation: 1.2s infinite beatHeart;
-    filter: sepia(30%);
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }
 
 @-webkit-keyframes beatHeart {
@@ -51,10 +84,10 @@ h1 {
 svg {
     height: 500px;
     width: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    top: 0%;
+    left: 0%;
+    transform: translate(-15%, -25%);
     filter: drop-shadow(0 0 25px #00e6a8);
     opacity: 1;
 }
@@ -64,6 +97,7 @@ svg .pathdraw {
     fill: transparent;
     stroke-width: 6px;
     animation: anim 1.2s linear infinite;
+    animation-delay: 2s;
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
 }
@@ -75,15 +109,96 @@ svg .pathdraw {
     }
 }
 
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
 
-#wink-emoji {
+.checkbox {
     opacity: 0;
-    animation: fade-in 0.8s;
-    animation-delay: 3s;
+    position: absolute
+}
+
+.label {
+    background-color: #111;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    width: 100px;
+    height: 52px;
+    transform: scale(1.5);
+}
+
+.label .ball {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 44px;
+    height: 44px;
+    transform: translate(0px);
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+    transform: translate(48px);
+}
+
+.fa-heartbeat {
+    color: #ff1744;
+    margin-left: 5px;
+}
+
+.fa-arrow-alt-circle-right {
+    color: #ff1744;
+    margin-right: 5px;
+}
+
+
+.elem-fade-out {
+    animation: fade-out 1.5s;
     animation-fill-mode: forwards;
 }
 
-@keyframes fade-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.elem-fade-in {
+    animation: fade-in 2s;
+    animation-fill-mode: forwards;
+}
+
+
+.anim-typewriter {
+    animation: typewriter 2.5s steps(20) 5s 1 normal both,
+               blinkTextCursor 500ms steps(20) infinite normal;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 7.5em;
+    }
+}
+
+@keyframes blinkTextCursor {
+    from {
+        border-right-color: rgba(255, 255, 255, 0.75);
+    }
+    to {
+        border-right-color: transparent;
+    }
+}
+
+@keyframes volume-fade-out {
+    from {
+        volume: 
+    }
 }

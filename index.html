@@ -6,20 +6,90 @@
 
         <title>Heartbeats</title>
         
+        <link href="font_awesome/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <div class="container">
-            <img src="image.gif" class="human-heart" alt="human heart">
-    
-            <h1>It beats for you <span id="wink-emoji">&#x1F609;</span></h1>
+            <div id="slider">
+                <input type="checkbox" class="checkbox" id="slider-chk">
+                <label class="label" for="slider-chk" id="slider-icons">
+                    <i class="fas fa-heartbeat fa-2x"></i>
+                    <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                    <div class="ball"></div>
+                </label>
+            </div>
 
-            <svg xmlns="http://www.w3.org/2000/svg">
-                <g class="pathdraw" id="Layer_1">
-                    <title>Pulse Heart</title>
-                    <path id="svg_1" d="m162.5,299.2l142.5,-0.2l8,-23l11,23l34,0l14,-109l14,226l12,-118l30,0l5,-15l10,0l7,-16l10,31l155,0">
-                </g>
-            </svg>
+            <audio id="audio-heartbeat" preload="auto" loop>
+                <source src="heartbeat.wav" type="audio/wav">
+            </audio>
+
+            <audio id="audio-song" preload="auto">
+                <source src="song.mp3" type="audio/mp3">
+            </audio>
+
+            <img src="image.gif" id="img-heart" class="human-heart elem-fade-in" hidden>
+    
+            <h1 id="note" class="anim-typewriter elem-fade-in" hidden>It beats for you <span id="wink-emoji">&#x1F609;</span></h1>
+    
+            <div id="pulse" class="elem-fade-in" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <g class="pathdraw" id="Layer_1">
+                        <title>Pulse Heart</title>
+                        <path id="svg_1" d="m162.5,299.2l142.5,-0.2l8,-23l11,23l34,0l14,-109l14,226l12,-118l30,0l5,-15l10,0l7,-16l10,31l155,0">
+                    </g>
+                </svg>
+            </div>
         </div>
+
+
+        <script>
+            document.getElementById("slider-chk").addEventListener("change", () => {
+                setTimeout(function() {
+                    const slider = document.getElementById("slider");
+                    slider.classList.add("elem-fade-out");
+                    setTimeout(function () { slider.remove(); }, 1500);
+
+                    const audio_heartbeat = document.getElementById("audio-heartbeat");
+                    const audio_song = document.getElementById("audio-song");
+                    const img_heart = document.getElementById("img-heart");
+                    const note = document.getElementById("note");
+                    const pulse = document.getElementById("pulse");
+
+                    setTimeout(function() {
+                        img_heart.hidden = false;
+                        note.hidden = false;
+                        pulse.hidden = false;
+
+                        audio_heartbeat.volume = 0.5;
+                        audio_song.volume = 0.2;
+                    }, 1750);
+
+                    setTimeout(function() {
+                        img_heart.classList.remove("elem-fade-in");
+                        note.classList.remove("elem-fade-in");
+                        pulse.classList.remove("elem-fade-in");
+                        
+                        audio_heartbeat.play();
+                    }, 3500);
+
+                    setTimeout(function() {
+                        audio_song.play();
+                    }, 9000);
+
+                    setTimeout(function() {
+                        let fadeAudio = setInterval(function() {
+                            if (audio_heartbeat.volume > 0.20) {
+                                audio_heartbeat.volume -= 0.05;
+                            } else {
+                                clearInterval(fadeAudio);
+                            }
+                        }, 1000);
+
+                        note.style.borderRight = "none";
+                    }, 13000);
+                }, 1500);
+            });
+        </script>
     </body>
 </html>
