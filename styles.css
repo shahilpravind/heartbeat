@@ -175,7 +175,7 @@ svg .pathdraw {
 
 
 .anim-typewriter {
-    animation: typewriter 2.5s steps(20) 5s 1 normal both,
+    animation: typewriter 2.5s steps(20) 4s 1 normal both,
                blinkTextCursor 500ms steps(20) infinite normal;
 }
 
@@ -194,11 +194,5 @@ svg .pathdraw {
     }
     to {
         border-right-color: transparent;
-    }
-}
-
-@keyframes volume-fade-out {
-    from {
-        volume: 
     }
 }

@@ -62,8 +62,8 @@
                         note.hidden = false;
                         pulse.hidden = false;
 
-                        audio_heartbeat.volume = 0.5;
-                        audio_song.volume = 0.2;
+                        audio_heartbeat.volume = 0.8;
+                        audio_song.volume = 0.5;
                     }, 1750);
 
                     setTimeout(function() {
@@ -72,7 +72,7 @@
                         pulse.classList.remove("elem-fade-in");
                         
                         audio_heartbeat.play();
-                    }, 3500);
+                    }, 3000);
 
                     setTimeout(function() {
                         audio_song.play();
