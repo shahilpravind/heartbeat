@@ -67,12 +67,12 @@
                     }, 1750);
 
                     setTimeout(function() {
+                        audio_heartbeat.play();
+
                         img_heart.classList.remove("elem-fade-in");
                         note.classList.remove("elem-fade-in");
                         pulse.classList.remove("elem-fade-in");
-                        
-                        audio_heartbeat.play();
-                    }, 3000);
+                    }, 3250);
 
                     setTimeout(function() {
                         audio_song.play();
